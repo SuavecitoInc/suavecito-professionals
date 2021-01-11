@@ -1,4 +1,4 @@
-<p style="text-align: center;">
+<p align="center">
   <img src="theme/assets/logo.png" width="250px" alt="Suavecito" />
 </p>
 
