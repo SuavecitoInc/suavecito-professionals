@@ -1,0 +1,6 @@
+{% if customer %}
+  {{ content_for_index }}
+{% else %}
+  {% layout 'theme.uau' %}
+  <div id="ua-app">not a customer</div>
+{% endif %}
