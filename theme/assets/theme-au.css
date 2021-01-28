@@ -1,0 +1,36 @@
+.custom-view-all-btn {
+  font-family: var(--font-stack-header);
+  font-size: calc(var(--font-size-base) * 1.2px);
+  text-decoration: underline;
+}
+
+.h4.grid-view-item__title {
+  color: var(--color-burg);
+}
+
+dl.price {
+  font-family: var(--font-stack-header);
+}
+
+dl .price-item.price-item--regular {
+  color: #928f8f;
+}
+
+.suavecito-button {
+  background-color: var(--color-burg);
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+  filter: drop-shadow(7.8373px 7.8373px 5.598px rgba(0, 0, 0, 0.45));
+  font-family: var(--font-stack-header);
+  padding: 10px 10px;
+  transition: filter 0.2s ease-in-out;
+}
+
+.suavecito-button:not([disabled]):hover,
+.suavecito-button:focus {
+  color: #ffffff;
+  filter: drop-shadow(
+    calc(7.8373px / 2) calc(7.8373px / 2) calc(5.598px / 2) rgba(0, 0, 0, 0.45)
+  );
+}

@@ -1,3 +1,4 @@
+{% if customer %}
 <div class="page-width">
   <div class="empty-page-content text-center">
     <h1>{{ 'general.404.title' | t }}</h1>
@@ -7,3 +8,7 @@
     </p>
   </div>
 </div>
+{% else %}
+  {% layout 'theme.uau' %}
+  {% render 'index-uau' %}
+{% endif %}

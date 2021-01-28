@@ -1,0 +1,69 @@
+<style>
+  header .uau-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.45rem 5px;
+  }
+  nav a {
+    color: var(--color-burg);
+    font-family: var(--font-stack-header);
+    font-size: 2.5rem;
+    margin-left: 10px;
+  }
+  .uau-wrapper nav a:not([disabled]):hover {
+    color: var(--color-burg);
+  }
+  .uau-button {
+    background-color: var(--color-burg);
+    border-radius: 10px;
+    color: #ffffff;
+    display: inline-block;
+    padding: 10px;
+  }
+  .uau-wrapper .uau-button:not([disabled]):hover {
+    color: #ffffff;
+  }
+  .uau-hero {
+    background-color: #000000;
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .uau-hero img {
+    max-width: 960px;
+  }
+  @media (max-width: 500px) {
+    .uau-hero {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .uau-hero img {
+      width: 100%;
+    }
+  }
+</style>
+
+<header data-handle="{{ request.page_type | handle }}">
+  {% assign templateHandle = request.page_type | handle %}
+  {% unless templateHandle == 'index' %}
+  <div class="uau-wrapper">
+    <a href="/">
+      <img src="{{'pro-logo.png' | asset_img_url: '250x'}}" alt="Suavecito Pro" />
+    </a>
+    <nav>
+      <a href="/account/login">Log In</a>
+      <a href="/pages/apply" class="uau-button">Apply</a>
+    </nav>
+  </div>
+  {% else %}
+  <div class="uau-hero">
+    <a href="/pages/apply">
+    {% render 'image', src: 'header.png', alt: "Welcome to Suavecito for Professionals. Click to apply.", sizes: "(max-width: 480px) 480w, (max-width: 768px) 768w, (min-width: 1024px) 960w" loading="eager" %}
+    </a>
+  </div>
+  {% endunless %}
+</header>

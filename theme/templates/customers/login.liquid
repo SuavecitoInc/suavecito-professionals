@@ -1,4 +1,5 @@
-<div class="page-width">
+{% layout 'theme.uau' %}
+<div class="page-width" style="margin-bottom: 1.45rem;">
   <div class="grid">
 
     <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
@@ -11,6 +12,7 @@
         <h1 id="LoginHeading" class="text-center">{{ 'customer.login.title' | t }}</h1>
 
         {% form 'customer_login', novalidate: 'novalidate' %}
+          <input type="hidden" name="return_to" value="/">
 
           {%- if form.errors -%}
             <div class="form-message form-message--error">

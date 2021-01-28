@@ -659,7 +659,8 @@
           "zh-CN": "字体",
           "zh-TW": "字型"
         },
-        "default": "helvetica_n7"
+        "default": "helvetica_n7",
+        "info": "This setting has been overriden in css-variables.liquid"
       },
       {
         "type": "range",

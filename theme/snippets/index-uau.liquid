@@ -1,0 +1,112 @@
+{% comment %}
+  the view for the unauthenticated user
+{% endcomment %}
+<div id="uau-index">
+  <div class="uau-row burg">
+    <div class="uau-col login">
+      {% render 'login-form-uau' %}
+    </div>
+    <div class="uau-col">
+      {% render 'image', src: 'login-decoration_2.jpg', alt: "Barber cutton a man's hair with scissors", sizes: "(max-width: 480px) 480w, (max-width: 768px) 768w, (min-width: 1024px) 1024w" loading="lazy" %}
+    </div>
+  </div>
+
+  <div class="uau-row reverse">
+    <div class="uau-col">
+      {% render 'image', src: 'perks-decoration.jpg', alt: "Barber cutton a man's hair with scissors", sizes: "(max-width: 480px) 480w, (max-width: 768px) 768w, (min-width: 1024px) 1024w" loading="lazy" %}
+    </div>
+    <div class="uau-col uau-text-block right">
+      <h2>The Perks</h2>
+      <p>Join <span>Suavecito Pro</span> to be the first to hear about new releases from all of our brands: Suavecito, Suavecita, Premium Blends.</p>
+      <p>Get products at a discounted price and access to exclusive sales that are typically reserved for our wholesale customers.</p>
+    </div>
+  </div>
+
+  <div class="uau-row">
+    <div class="uau-col uau-text-block left">
+      <h2>Do I Qualify?</h2>
+      <p><span>Suavecito Pro</span> is for barbers, stylists, and cosmetologists that don’t qualify for or participate in our <a href="https://wholesale.suavecito.com" target="_blank" rel="noreferrer">wholesale program</a>.</p>
+      <p>If you are a licensed professional responsible for supplying yourself with your own tools and products, you may qualify for a Suavecito Pro account.</p>
+    </div>
+    <div class="uau-col">
+      {% render 'image', src: 'qualify-decoration.jpg', alt: "Barber cutton a man's hair with scissors", sizes: "(max-width: 480px) 480w, (max-width: 768px) 768w, (min-width: 1024px) 1024w" loading="lazy" %}
+    </div>
+  </div>
+</div>
+
+<style>
+  #uau-index .uau-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .uau-row.burg {
+    background-color: var(--color-burg);
+  }
+  .uau-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    box-sizing: border-box;
+    max-width: 50%;
+  }
+  .uau-col.login {
+    background-color: var(--color-burg);
+    padding: 1rem;
+    height: 100%;
+  }
+  .uau-col img {
+    min-height: 100%;
+    object-fit: cover;
+  }
+  #uau-index h2 {
+    border-bottom: 20px solid var(--color-burg);
+    color: var(--color-yellow);
+    font-size: 3rem;
+  }
+  .uau-text-block {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+  .uau-text-block.right {
+    text-align: right;
+  }
+  .uau-text-block.left {
+    text-align: left;
+  }
+  .uau-text-block h2, .uau-text-block p {
+    max-width: 100%;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .uau-text-block p span {
+    color: var(--color-burg);
+  }
+  .uau-text-block a {
+    text-decoration: underline;
+  }
+  @media (max-width: 1023px) {
+    #uau-index .uau-row.reverse {
+      flex-wrap: wrap-reverse;
+    }
+    .uau-col {
+      flex: none;
+      max-width: 100%;
+      width: 100%;
+    }
+    .uau-col img {
+      width: 100%;
+    }
+    .uau-text-block {
+      padding: 3rem 1rem;
+    }
+    .uau-text-block.right {
+      text-align: left;
+    }
+  }
+</style>

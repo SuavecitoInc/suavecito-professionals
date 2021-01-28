@@ -88,11 +88,13 @@
             {% endif %}
 
             <ul class="list--inline article__meta-buttons">
-              <li>
-                <a href="{{ article.url }}" class="btn btn--tertiary btn--small" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">
-                  {{ 'blogs.article.read_more' | t }}
-                </a>
-              </li>
+              {% unless article.content == article.excerpt %}
+                <li>
+                  <a href="{{ article.url }}" class="btn btn--tertiary btn--small" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">
+                    {{ 'blogs.article.read_more' | t }}
+                  </a>
+                </li>
+              {% endunless %}
 
               {% if blog.comments_enabled? and article.comments_count > 0 %}
                 <li>
@@ -172,11 +174,13 @@
                 {% endif %}
 
                 <ul class="list--inline article__meta-buttons">
-                  <li>
-                    <a href="{{ article.url }}" class="btn btn--tertiary btn--small" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">
-                      {{ 'blogs.article.read_more' | t }}
-                    </a>
-                  </li>
+                  {% unless article.content == article.excerpt %}
+                    <li>
+                      <a href="{{ article.url }}" class="btn btn--tertiary btn--small" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">
+                        {{ 'blogs.article.read_more' | t }}
+                      </a>
+                    </li>
+                  {% endunless %}
 
                   {% if blog.comments_enabled? and article.comments_count > 0 %}
                     <li>

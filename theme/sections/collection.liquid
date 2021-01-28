@@ -1,7 +1,7 @@
 <div class="page-width">
   {% if section.settings.title != blank %}
     <div class="section-header text-center">
-      <h2>{{ section.settings.title | escape }}</h2>
+      <h2>{{ section.settings.title }}</h2>
     </div>
   {% endif %}
 
@@ -51,16 +51,26 @@
 
   {% if section.settings.show_view_all %}
     <hr class="hr--invisible" aria-hidden="true" />
-    <div class="text-center">
-      <a href="{{ collection.url }}" class="btn" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
-        {{ 'collections.general.view_all' | t }}
-      </a>
-    </div>
+    {% if section.settings.view_all_text.size > 0 %}
+      <div class="text-right">
+        <a href="{{ collection.url }}" class="custom-view-all-btn" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
+          {{ section.settings.view_all_text }}
+        </a>
+      </div>
+    {% else %}
+      <div class="text-center">
+        <a href="{{ collection.url }}" class="btn" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
+          {{ 'collections.general.view_all' | t }}
+        </a>
+      </div>
+    {% endif %}
   {% endif %}
 
 </div>
 
-
+{%- style -%}
+  {{ section.settings.custom_css }}
+{%- endstyle -%}
 
 {% schema %}
 {
@@ -283,6 +293,16 @@
         "zh-TW": "顯示「檢視全部」按鈕"
       },
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "Custom 'View all' button text"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "CSS"
     }
   ],
   "presets": [

@@ -76,6 +76,10 @@
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
 
+  <link rel="stylesheet" href="{{ 'theme-uau.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
+
+  <link rel="stylesheet" href="{{ 'fonts.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
+
   <style>
     {{ header_font | font_face: font_display: 'swap' }}
     {{ base_font | font_face: font_display: 'swap' }}
@@ -165,7 +169,7 @@
   {{ content_for_header }}
 </head>
 
-<body class="template-{{ request.page_type | handle }}">
+<body class="uau-template-{{ request.page_type | handle }}">
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
@@ -173,7 +177,7 @@
     {% include 'cart-popup' %}
   {%- endif -%}
 
-  {% section 'header' %}
+  {% render 'header-uau' %}
 
   <div class="page-container drawer-page-content" id="PageContainer">
 
@@ -181,7 +185,7 @@
       {{ content_for_layout }}
     </main>
 
-    {% section 'footer' %}
+    {% render 'footer-uau' %}
 
     <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
       {{- 'sections.slideshow.navigation_instructions' | t -}}

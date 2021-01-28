@@ -1,0 +1,101 @@
+<style>
+  .uau-login-form {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    height: 100%;
+  }
+  #customer_login .uau-form-title {
+    color: var(--color-yellow);
+    font-size: 2em;
+    text-align: center;
+  }
+  h2.uau-form-title span {
+    color: #ffffff;
+    font-size: 2.5rem;
+  }
+  .uau-login-form input {
+    display: block;
+    margin-bottom: 1.45rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    max-width: 100%;
+  }
+  .uau-login-form input[type="submit"] {
+    background-color: #000000;
+    border-radius: 10px;
+    color: #ffffff;
+    display: inline-block;
+    font-family: var(--font-stack-header);
+    font-size: 2rem;
+    padding: 10px 20px;
+    width: auto;
+  }
+  .uau-login-form a {
+    color: #000000;
+    font-weight: bold;
+  }
+  @media (max-width: 500px) {
+    #customer_login h2.uau-form-title {
+      font-size: 1.5rem;
+    }
+    h2.uau-form-title span {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+{% form 'customer_login', novalidate: 'novalidate', class: 'uau-login-form' %}
+  <input type="hidden" name="return_to" value="/">
+  <h2 class="uau-form-title">
+    Already a member?<br />
+    <span>Welcome Back!</span>
+  </h2>
+
+  {%- if form.errors -%}
+    <div class="form-message form-message--error">
+      <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+      {{ form.errors | default_errors }}
+    </div>
+  {%- endif -%}
+
+  <input
+    type="email"
+    name="customer[email]"
+    id="CustomerEmail"
+    autocomplete="email"
+    autocorrect="off"
+    autocapitalize="off"
+    placeholder="{{ 'customer.login.email' | t }}"
+    aria-label="{{ 'customer.login.email' | t }}"
+    {%- if form.errors contains 'form' -%}
+      class="input--error"
+      aria-invalid="true"
+    {%- endif -%}
+    >
+
+  {% if form.password_needed %}
+    <input
+      type="password"
+      value=""
+      name="customer[password]"
+      id="CustomerPassword"
+      placeholder="{{ 'customer.login.password' | t }}"
+      aria-label="{{ 'customer.login.password' | t }}"
+      {%- if form.errors contains 'form' -%}
+        class="input--error"
+        aria-invalid="true"
+      {%- endif -%}
+    >
+  {% endif %}
+
+  <div class="text-center">
+    {% if form.password_needed %}
+      <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+    {% endif %}
+
+    <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
+
+  </div>
+
+{% endform %}

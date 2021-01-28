@@ -1,9 +1,17 @@
-<div class="page-width">
-  {% if section.settings.title != blank %}
-    <div class="section-header text-center">
+{% if section.settings.use_accent_heading and section.settings.title != blank %}
+    <div class="section-header text-center accent">
       <h2>{{ section.settings.title | escape }}</h2>
     </div>
-  {% endif %}
+{% endif %}
+
+<div class="page-width">
+  {% unless section.settings.use_accent_heading %}
+    {% if section.settings.title != blank %}
+      <div class="section-header text-center">
+        <h2>{{ section.settings.title | escape }}</h2>
+      </div>
+    {% endif %}
+  {% endunless %}
 
   <div class="grid {% unless section.blocks.size == 5 %}grid--uniform{% endunless %} grid--flush-bottom">
     {%- assign grid_item_width = 'medium-up--one-third' -%}
@@ -75,7 +83,7 @@
           {%- endcapture -%}
 
           <a href="{{ block.settings.button_link }}"
-            class="btn btn--secondary btn--small"
+            class="suavecito-button"
             aria-label="{{ ariaLabel | escape }}">
             {{- block.settings.button_label | escape -}}
           </a>
@@ -87,9 +95,64 @@
   {% if section.blocks.size == 0 %}
     {% include 'no-blocks' %}
   {% endif %}
+
 </div>
 
+{% if section.settings.use_accent_heading %}
+  {%- style -%}
+    #shopify-section-{{section.id}} {
+      background-color: #FCF0D4;
+    }
+    #shopify-section-{{section.id}} .section-header.accent {
+      color: var(--color-burg);
+      font-size: 2rem;
+    }
+    @media (min-width: 991px) {
+      #shopify-section-{{section.id}} .suavecito-button {
+        font-size: 1.5rem;
+      }
+    }
+    @media (min-width: 768px) {
+      #shopify-section-{{section.id}} {
+        background-color: transparent;
+      }
+      #shopify-section-{{section.id}} .section-header.accent {
+        background-image: url({{section.settings.background_image | img_url: '2048x'}});
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+        font-size: 3rem;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+      }
+      #shopify-section-{{section.id}} h2 {
+        margin-top: -3.5rem;
+      }
+      #shopify-section-{{section.id}} .page-width {
+        padding-top: 3rem;
+      }
+      #shopify-section-{{section.id}} .grid__item {
+        margin-top: 100px;
+      }
+      #shopify-section-{{section.id}} .grid__item:nth-of-type(2) {
+        margin-top: 200px;
+      }
+      #shopify-section-{{section.id}} h3 {
+        color: var(--color-burg);
+      }
+      #shopify-section-{{section.id}} .suavecito-button {
+        font-size: 1.2rem;
+      }
+    }
+  {%- endstyle -%}
+{% endif %}
 
+{% if section.settings.custom_css.size > 0 %}
+  {%- style -%}
+    {{ section.settings.custom_css }}
+  {%- endstyle -%}
+{% endif %}
 
 {% schema %}
 {
@@ -167,6 +230,16 @@
         "zh-CN": "带有图片的文本列",
         "zh-TW": "附圖片的文字欄"
       }
+    },
+    {
+      "type": "checkbox",
+      "id": "use_accent_heading",
+      "label": "Use Accent Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
     },
     {
       "type": "select",
@@ -249,6 +322,11 @@
           }
         }
       ]
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
     }
   ],
   "blocks": [

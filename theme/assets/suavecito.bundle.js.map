@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://suavecito-professionals/./src/index.js"],"names":["console","log"],"mappings":";;;;AAAAA,OAAO,CAACC,GAAR,CAAY,+BAAZ,E","file":"suavecito.bundle.js","sourcesContent":["console.log(\"hello from the suavecito site\");\n"],"sourceRoot":""}

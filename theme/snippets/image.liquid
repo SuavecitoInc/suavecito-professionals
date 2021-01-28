@@ -1,0 +1,24 @@
+{% comment %}
+  defaults
+{% endcomment %}
+{% unless sizes %}
+  {% assign sizes = '100vw' %}
+{% endunless %}
+{% unless loading %}
+  {% assign loading = "lazy" %}
+{% endunless %}
+{% unless src %}
+  {{ 'image' | placeholder_svg_tag }}
+{% else %}
+  <img  
+  alt="{{alt}}"
+  srcset="{{src | asset_img_url: '480x'}} 480w,
+          {{src | asset_img_url: '768x'}} 768w,
+          {{src | asset_img_url: '1024x'}} 1024w,
+          {{src | asset_img_url: '1920x'}} 1920w,
+          {{src | asset_img_url: '2048x'}} 2048w"
+  sizes="{{sizes}}"
+  src="{{src | asset_img_url: '2048x'}}"
+  loading="{{loading}}"
+  />
+{% endunless %}

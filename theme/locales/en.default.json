@@ -223,6 +223,8 @@
   "contact": {
     "form": {
       "name": "Name",
+      "fName": "First Name",
+      "lName": "Last Name",
       "email": "Email",
       "phone": "Phone Number",
       "message": "Message",
@@ -377,7 +379,7 @@
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
       "availability": "Availability",
-      "on_sale": "Sale",
+      "on_sale": "Pro Price",
       "from_lowest_price_html": "from {{ lowest_price }}",
       "sale_price": "Sale price",
       "quantity": "Quantity",

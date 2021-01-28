@@ -30,6 +30,12 @@
   {% endif %}
 </div>
 
+{% if section.settings.custom_css.size > 0 %}
+  {%- style -%}
+    {{ section.settings.custom_css }}
+  {%- endstyle -%}
+{% endif %}
+
 
 
 {% schema %}
@@ -109,6 +115,11 @@
         "zh-CN": "logo 列表",
         "zh-TW": "標誌清單"
       }
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "CSS"
     }
   ],
   "blocks": [
