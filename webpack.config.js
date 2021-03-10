@@ -1,8 +1,8 @@
-const path = require("path");
+const path = require("path")
 
 module.exports = {
   entry: {
-    suavecito: "./src/index.js", //sitewide JavaScript file
+    suavecito: "./src/index.js", // sitewide JavaScript file
     membershipApplication: "./src/membership-application.js",
   },
   devtool: "source-map",
@@ -19,7 +19,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"],
+            presets: [["@babel/preset-env", { targets: "defaults" }]],
             plugins: [
               "@babel/plugin-transform-async-to-generator",
               "@babel/plugin-proposal-object-rest-spread",
@@ -30,4 +30,4 @@ module.exports = {
       },
     ],
   },
-};
+}
