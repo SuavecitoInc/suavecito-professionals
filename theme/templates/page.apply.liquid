@@ -12,87 +12,27 @@
         </div>
       {% endif %}
 
-      <div class="contact-form form-vertical">
-        {%- assign formId = 'MembershipApplication' -%}
-        {% form 'contact', id: formId %}
-          {% include 'form-status', form: form, form_id: formId %}
-
-          <div class="grid grid--half-gutters">
-            <div class="grid__item medium-up--one-half">
-              <label for="firstName">First Name *</label>
-              <input type="text" id="firstName" name="contact[First Name]" required>
-            </div>
-            <div class="grid__item medium-up--one-half">
-              <label for="lastName">Last Name *</label>
-              <input type="text" id="lastName" name="contact[Last Name]" required>
-            </div>
-            <div class="grid__item medium-up--one-half">
-              <label for="email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
-              <input
-                type="email"
-                id="email"
-                name="contact[email]"
-                autocorrect="off"
-                autocapitalize="off"
-                aria-required="true"
-                {%- if form.errors contains 'email' -%}
-                  class="input--error"
-                  aria-invalid="true"
-                  aria-describedby="{{ formId }}-email-error"
-                {%- endif -%}
-                required
-                >
-              {%- if form.errors contains 'email' -%}
-                <span id="{{ formId }}-email-error" class="input-error-message">
-                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                  {% include 'icon-error' %}
-                  <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-                </span>
-              {%- endif -%}
-            </div>
-            <div class="grid__item medium-up--one-half">
-              <label for="phone">{{ 'contact.form.phone' | t }} *</label>
-              <input type="tel" id="phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" required>
-            </div>
-            <div class="grid__item medium-up--one-half">
-              <label>I am a licensed: *</label><br />
-              <input
-                type="radio"
-                id="{{ formId }}-barber"
-                name="Barber or Cosmetologist"
-                value="Barber"
-                data-value="7"
-                required
-              />
-              <span class="uau-radio-label">Barber</span>
-              <input
-                type="radio"
-                id="{{ formId }}-cosmetologist"
-                name="Barber or Cosmetologist"
-                value="Cosmetologist"
-                data-value="8"
-              />
-              <span class="uau-radio-label">Cosmetologist</span>
-            </div>
-            <div class="grid__item medium-up--one-half">
-              <label for="licensePhoto">Photo of license *</label>
-              <input id="licensePhoto" name="licensePhoto" type="file" accept="image/*, .pdf" required />
-              <input id="licensePhotoBase64" type="hidden" />
-            </div>
-          </div>
-
-          <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
-          <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
-
-          <input id="submitApplication" type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
-
-        {% endform %}
+      <div id="MembershipApplication" class="contact-form form-vertical">
+        {% comment %}
+          React content
+        {% endcomment %}
       </div>
     </div>
   </div>
 </div>
 
 <style>
+  body.template-apply {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  body.template-apply .page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
   .uau-radio-label {
     margin-right: 10px;
   }
@@ -100,6 +40,14 @@
     border: 0;
     padding: 0;
   }
-</style>
+  input[data-is-valid="false"] {
+    border-color: red;
+    color: red;
+  }
 
-{{ 'membershipApplication.bundle.js' | asset_url | script_tag }}
+  @media (max-width: 767px) {
+    body.template-apply {
+      height: auto;
+    }
+  }
+</style>

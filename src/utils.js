@@ -4,15 +4,15 @@
  * @returns boolean
  */
 export function validatePhone(phone) {
-  //Remove any non-numeric characters
-  phone = phone.replace(/\D/g, "");
-  if (phone.length === 10) {
-    return true;
-  } else if (phone.length >= 11) {
-    return true;
-  } else {
-    return false;
+  // Remove any non-numeric characters
+  const _phone = phone.replace(/\D/g, "")
+  if (_phone.length === 10) {
+    return "true"
   }
+  if (_phone.length >= 11) {
+    return true
+  }
+  return "false"
 }
 
 /**
@@ -21,29 +21,29 @@ export function validatePhone(phone) {
  * @returns {string} the phone number
  */
 export function formatPhone(phone) {
-  //Remove any non-numeric characters
-  phone = phone.replace(/\D/g, "");
-  //Handle 10 digit phone numebers
+  // Remove any non-numeric characters
+  const _phone = phone.replace(/\D/g, "")
+  // Handle 10 digit phone numebers
   if (phone.length === 10) {
-    const area_code = phone.slice(0, 3);
-    const first_three = phone.slice(3, 6);
-    const last_four = phone.slice(6, 10);
-    return "1" + area_code + first_three + last_four;
-    //Handle phone numbers with a country code
-  } else if (phone.length >= 11) {
-    let phone_length = phone.length;
-    const last_four = phone.slice(phone.length - 4, phone.length);
-    phone_length -= 4;
-    const first_three = phone.slice(phone_length - 3, phone_length);
-    phone_length -= 3;
-    const area_code = phone.slice(phone_length - 3, phone_length);
-    phone_length -= 3;
-    const country_code = phone.slice(0, phone_length);
-    return country_code + area_code + first_three + last_four;
-    //Handle numbers too short to be a phone number
-  } else {
-    return false;
+    const areaCode = _phone.slice(0, 3)
+    const firstThree = _phone.slice(3, 6)
+    const lastFour = _phone.slice(6, 10)
+    return `1${areaCode}${firstThree}${lastFour}`
+    // Handle phone numbers with a country code
   }
+  if (phone.length >= 11) {
+    let phoneLength = phone.length
+    const lastFour = phone.slice(phone.length - 4, phone.length)
+    phoneLength -= 4
+    const firstThree = phone.slice(phoneLength - 3, phoneLength)
+    phoneLength -= 3
+    const areaCode = phone.slice(phoneLength - 3, phoneLength)
+    phoneLength -= 3
+    const countryCode = phone.slice(0, phoneLength)
+    return countryCode + areaCode + firstThree + lastFour
+    // Handle numbers too short to be a phone number
+  }
+  return false
 }
 
 /**
@@ -53,8 +53,7 @@ export function formatPhone(phone) {
  */
 export function validateEmail(email) {
   if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return true;
-  } else {
-    return false;
+    return "true"
   }
+  return "false"
 }

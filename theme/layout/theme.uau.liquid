@@ -169,7 +169,7 @@
   {{ content_for_header }}
 </head>
 
-<body class="uau-template-{{ request.page_type | handle }}">
+<body class="uau-template-{{ request.page_type | handle }} template-{{ template.suffix }}">
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
@@ -197,5 +197,16 @@
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
+
+  {% if template.suffix == "apply" %}
+  {% comment %}
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+  {% endcomment %}
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+  <script src="{{ 'MembershipApplication.js' | asset_url }}"></script>
+  {% endif %}
 </body>
 </html>
